@@ -1,4 +1,4 @@
-
+boolean switchBlink = true;
 // joystick pins
 const uint8_t x_joy_pin = A0;
 const uint8_t y_joy_pin = A1;
@@ -69,6 +69,7 @@ void loop() {
     Serial.print(2);
   } else if (y_axis < left_lim) {
     // down (reversing)
+	  digitalWrite(reverse_LED, switchBlink);
     float distance = get_distance();
 
     if (distance < 15.0) {
@@ -88,12 +89,18 @@ void loop() {
   if (x_axis > right_lim) {
     // right
     Serial.print(2);
+		digitalWrite(right_LED, switchBlink);
+		digitalWrite(left_LED, LOW);
   } else if (x_axis < left_lim) {
     //left
     Serial.print(1);
+		digitalWrite(right_LED, LOW);
+		digitalWrite(left_LED, switchBlink);
   } else {
     //neither -- normal pos
     Serial.print(0);
+		digitalWrite(right_LED, LOW);
+		digitalWrite(left_LED, LOW);
   }
 
   Serial.print(",");
@@ -101,8 +108,10 @@ void loop() {
 
   if (brake) {
     Serial.print(1);
+		digitalWrite(brake_LED, HIGH);
   } else {
     Serial.print(0);
+		digitalWrite(brake_LED, LOW);
   }
 
   Serial.print("\n");
@@ -110,6 +119,7 @@ void loop() {
   //print_val("dist", dist);
   delay(500);  // TODO sort out
 
+	switchBlink = (switchBlink ? 1 : 0)
 }
 
 /*
