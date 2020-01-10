@@ -17,6 +17,12 @@ const int right_lim = 550;
 const int up_lim = 3;
 const int down_lim = 2;
 
+// LED pins
+int brake_LED = ?;
+int left_LED = ?;
+int right_LED = ?;
+int reverse_LED = ?;
+
 /*
 	Setup loop runs once.
 	Readies some components.
@@ -30,7 +36,7 @@ void setup() {
   delay(2000);  // uneeded.
 }
 
-// uneeded for now
+// unneeded for now
 #define BRAKE 4
 #define RIGHT 1
 #define LEFT 2
