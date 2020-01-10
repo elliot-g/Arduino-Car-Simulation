@@ -119,6 +119,7 @@ void print_val(String what, int val) {
 
 /*
    Uses the distance sensor.
+   TODO convert to unsigned long.
 */
 float get_distance() {
   digitalWrite(trig_pin, LOW);
