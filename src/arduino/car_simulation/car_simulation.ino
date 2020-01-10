@@ -131,6 +131,3 @@ float get_distance() {
   float dist = pulseIn(echo_pin, HIGH) / 58.0;
   return (dist == 0 || dist > 400) ? -1 : dist;
 }
-
-
-i have a huge penis
