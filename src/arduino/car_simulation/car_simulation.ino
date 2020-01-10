@@ -119,7 +119,7 @@ void loop() {
   //print_val("dist", dist);
   delay(500);  // TODO sort out
 
-	switchBlink = (switchBlink ? 1 : 0)
+	switchBlink = (switchBlink ? 1 : 0);
 }
 
 /*
