@@ -56,9 +56,6 @@ void loop() {
     Serial.print("\n");
   */
 
-  //Serial.print("y = ");
-
-
   if (y_axis > right_lim) {
     // up
     Serial.print(2);
@@ -67,11 +64,12 @@ void loop() {
 	  digitalWrite(reverse_LED, switchBlink);
     float distance = get_distance();
 
-    if (distance < 15.0) {
-      brake = 1;
-      Serial.print(0);
+	if (distance < 15.0) { 
+		// 
+		brake = 1;
+		Serial.print(0);
     } else {
-      Serial.print(1);
+		Serial.print(1);
     }
   } else {
     //normal pos
@@ -142,6 +140,3 @@ float get_distance() {
   float dist = pulseIn(echo_pin, HIGH) / 58.0;
   return (dist == 0 || dist > 400) ? -1 : dist;
 }
-
-
-hugeppinmybum
