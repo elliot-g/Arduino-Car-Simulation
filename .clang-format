@@ -1,5 +1,6 @@
+# All code files in this project should follow this format.
 ---
-# LLVM style defaults, but with 4 columns indentation (+ tabs)
+# LLVM style defaults, but with 4 columns indentation.
 BasedOnStyle: LLVM
 UseTab: Always
 TabWidth: 4
