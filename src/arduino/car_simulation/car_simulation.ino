@@ -1,4 +1,4 @@
-boolean switchBlink = true;
+boolean switch_blink = true;
 // joystick pins
 const uint8_t x_joy_pin = A0;
 const uint8_t y_joy_pin = A1;
@@ -23,12 +23,12 @@ const uint8_t led_brake = ;
 	Readies some components.
 */
 void setup() {
-  pinMode(trig_pin, OUTPUT);
-  pinMode(echo_pin, INPUT);
-  pinMode(brake_switch, INPUT);
-  Serial.begin(9600);
+	pinMode(trig_pin, OUTPUT);
+	pinMode(echo_pin, INPUT);
+	pinMode(brake_switch, INPUT);
+	Serial.begin(9600);
   //attachInterrupt(digitalPinToInterrupt(brake_switch), brake, CHANGE);
-  delay(2000);  // uneeded.
+	delay(2000);  // uneeded.
 }
 
 // unneeded for now
@@ -43,9 +43,9 @@ void setup() {
 	Reads and sends values over Serial.
 */
 void loop() {
-  int x_axis = analogRead(x_joy_pin);
-  int y_axis = analogRead(y_joy_pin);
-  uint8_t brake = digitalRead(brake_switch);
+	int x_axis = analogRead(x_joy_pin);
+	int y_axis = analogRead(y_joy_pin);
+	uint8_t brake = digitalRead(brake_switch);
 
   /*
     Serial.print(x_axis);
@@ -56,73 +56,72 @@ void loop() {
     Serial.print("\n");
   */
 
-  if (y_axis > right_lim) {
-    // up
-    Serial.print(2);
-  } else if (y_axis < left_lim) {
-    // down (reversing)
-	  digitalWrite(reverse_LED, switchBlink);
-    float distance = get_distance();
+	if (y_axis > right_lim) {
+		// up
+		Serial.print(2);
+	} else if (y_axis < left_lim) {
+		// down (reversing)
+		digitalWrite(reverse_LED, switchBlink);
+    	unsigned long distance = get_distance();
 
-	if (distance < 15.0) { 
-		// 
-		brake = 1;
+		if (distance < 15.0) { 
+			// too close, begin braking 
+			brake = 1;
+			Serial.print(0);
+		} else {
+			Serial.print(1);
+		}
+	} else {
+		//normal pos
 		Serial.print(0);
-    } else {
-		Serial.print(1);
-    }
-  } else {
-    //normal pos
-    Serial.print(0);
-  }
+	}
 
-  Serial.print(",");
-  //Serial.print("x = ");
+	Serial.print(",");
+	//Serial.print("x = ");
 
-  if (x_axis > right_lim) {
-    // right
-    Serial.print(2);
+	if (x_axis > right_lim) {
+		// right
+		Serial.print(2);
 		digitalWrite(right_LED, switchBlink);
 		digitalWrite(left_LED, LOW);
-  } else if (x_axis < left_lim) {
-    //left
-    Serial.print(1);
+	} else if (x_axis < left_lim) {
+		//left
+		Serial.print(1);
 		digitalWrite(right_LED, LOW);
 		digitalWrite(left_LED, switchBlink);
-  } else {
-    //neither -- normal pos
-    Serial.print(0);
+	} else {
+		//neither -- normal pos
+		Serial.print(0);
 		digitalWrite(right_LED, LOW);
 		digitalWrite(left_LED, LOW);
-  }
+	}
 
-  Serial.print(",");
-  //Serial.print("b = ");
+	Serial.print(",");
+	//Serial.print("b = ");
 
-  if (brake) {
-    Serial.print(1);
+	if (brake) {
+		Serial.print(1);
 		digitalWrite(brake_LED, HIGH);
-  } else {
-    Serial.print(0);
+	} else {
+		Serial.print(0);
 		digitalWrite(brake_LED, LOW);
-  }
+	}
 
-  Serial.print("\n");
+	Serial.print("\n");
 
-  //print_val("dist", dist);
-  delay(500);  // TODO sort out
-
-	switchBlink = (switchBlink ? 1 : 0);
+	//print_val("dist", dist)
+	switch_blink = !switch_blink;
+	delay(500);  // TODO sort out
 }
 
 /*
 	(Unused)
 */
 void print_val(String what, int val) {
-  Serial.print(what);
-  Serial.print(": ");
-  Serial.println(val);
-  Serial.println();
+	Serial.print(what);
+	Serial.print(": ");
+	Serial.println(val);
+	Serial.println();
 }
 
 
@@ -130,13 +129,13 @@ void print_val(String what, int val) {
    Uses the distance sensor.
    TODO convert to unsigned long.
 */
-float get_distance() {
-  digitalWrite(trig_pin, LOW);
-  delayMicroseconds(2);
-  digitalWrite(trig_pin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trig_pin, LOW);
+unsigned long get_distance() {
+	digitalWrite(trig_pin, LOW);
+ 	delayMicroseconds(2);
+	digitalWrite(trig_pin, HIGH);
+ 	delayMicroseconds(10);
+	digitalWrite(trig_pin, LOW);
 
-  float dist = pulseIn(echo_pin, HIGH) / 58.0;
-  return (dist == 0 || dist > 400) ? -1 : dist;
+	unsigned long dist = pulseIn(echo_pin, HIGH) / 58.0;
+	return (dist == 0 || dist > 400) ? -1 : dist;
 }
