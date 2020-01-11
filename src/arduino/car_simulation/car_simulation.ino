@@ -8,20 +8,15 @@ const uint8_t brake_switch = 2;
 const uint8_t trig_pin = 12;
 const uint8_t echo_pin = 11;
 
-const uint8_t pot_pin = 3;
-
 // constants for determining joystick position
 const int left_lim = 200;
 const int right_lim = 550;
 
-const int up_lim = 3;
-const int down_lim = 2;
-
-// LED pins
-int brake_LED = ?;
-int left_LED = ?;
-int right_LED = ?;
-int reverse_LED = ?;
+// led pins
+const uint8_t led_r = ;
+const uint8_t led_l = ;
+const uint8_t led_backup = ;
+const uint8_t led_brake = ;
 
 /*
 	Setup loop runs once.
