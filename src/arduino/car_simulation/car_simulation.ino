@@ -70,6 +70,7 @@ void loop() {
 			Serial.print(0);
 		} else {
 			Serial.print(1);
+			digitalWrite(led_backup, HIGH);
 		}
 	} else {
 		//normal pos
@@ -82,18 +83,18 @@ void loop() {
 	if (x_axis > right_lim) {
 		// right
 		Serial.print(2);
-		digitalWrite(right_LED, switchBlink);
-		digitalWrite(left_LED, LOW);
+		digitalWrite(led_r, switchBlink);
+		digitalWrite(led_l, LOW);
 	} else if (x_axis < left_lim) {
 		//left
 		Serial.print(1);
-		digitalWrite(right_LED, LOW);
-		digitalWrite(left_LED, switchBlink);
+		digitalWrite(led_r, LOW);
+		digitalWrite(led_l, switchBlink);
 	} else {
 		//neither -- normal pos
 		Serial.print(0);
-		digitalWrite(right_LED, LOW);
-		digitalWrite(left_LED, LOW);
+		digitalWrite(led_r, LOW);
+		digitalWrite(led_l, LOW);
 	}
 
 	Serial.print(",");
@@ -101,10 +102,10 @@ void loop() {
 
 	if (brake) {
 		Serial.print(1);
-		digitalWrite(brake_LED, HIGH);
+		digitalWrite(led_brake, HIGH);
 	} else {
 		Serial.print(0);
-		digitalWrite(brake_LED, LOW);
+		digitalWrite(led_brake, LOW);
 	}
 
 	Serial.print("\n");
