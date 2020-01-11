@@ -77,13 +77,13 @@ void loop() {
 	if (x_axis > right_lim) {
 		// right
 		Serial.print(2);
-		digitalWrite(led_r, HIGH);
+		digitalWrite(led_r, switch_blink);
 		digitalWrite(led_l, LOW);
 	} else if (x_axis < left_lim) {
 		// left
 		Serial.print(1);
 		digitalWrite(led_r, LOW);
-		digitalWrite(led_l, HIGH);
+		digitalWrite(led_l, switch_blink);
 	} else {
 		// neither -- normal pos
 		Serial.print(0);
