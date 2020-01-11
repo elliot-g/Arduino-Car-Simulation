@@ -108,7 +108,7 @@ void loop() {
 }
 
 /*
-	(Unused)
+    (Unused)
 */
 void print_val(String what, int val) {
 	Serial.print(what);
