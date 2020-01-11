@@ -1,0 +1,9 @@
+---
+# LLVM style defaults, but with 4 columns indentation (+ tabs)
+BasedOnStyle: LLVM
+UseTab: Always
+TabWidth: 4
+IndentWidth: 4
+# Force pointers to the type for C++.
+DerivePointerAlignment: false
+PointerAlignment: Left
