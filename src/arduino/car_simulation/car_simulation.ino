@@ -19,6 +19,9 @@ const uint8_t led_l = 8;
 const uint8_t led_backup = 7;
 const uint8_t led_brake = 2;
 
+//potentiometer pin
+const uint8_t pot_pin = 0; 
+
 /*
 	Setup loop runs once.
 	Readies some components.
@@ -46,6 +49,8 @@ void loop() {
 	int x_axis = analogRead(x_joy_pin);
 	int y_axis = analogRead(y_joy_pin);
 	uint8_t brake = digitalRead(brake_switch);
+	int potentiometer = analogRead(pot_pin) / 4;
+	
 
 	if (y_axis > right_lim) {
 		// up
@@ -103,7 +108,10 @@ void loop() {
 
 	Serial.print("\n");
 
+	Serial.println(potentiometer);
+
 	switch_blink = (switch_blink == 1 ? 0 : 1);
+	//switch_blink = !switch_blink;
 	delay(500); // TODO sort out
 }
 
