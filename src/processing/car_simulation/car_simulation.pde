@@ -36,7 +36,6 @@ final int LEFT_LIM = 550;
 final int RIGHT_LIM = 200;
 
 void draw() {
-  delay(500);
 	int[] vals = readIn();
 
 	if (vals == null) {  // data recieved was incomplete.
