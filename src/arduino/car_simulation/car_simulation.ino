@@ -67,6 +67,7 @@ void loop() {
 			// too close, begin braking
 			brake = 1;
 			Serial.print(0);
+			digitalWrite(led_backup, LOW);
 		} else {
 			Serial.print(2);
 			digitalWrite(led_backup, LOW);
