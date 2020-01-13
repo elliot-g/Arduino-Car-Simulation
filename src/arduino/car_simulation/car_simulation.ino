@@ -23,9 +23,6 @@ const uint8_t led_l = 8;
 const uint8_t led_backup = 7;
 const uint8_t led_brake = 2;
 
-//potentiometer pin
-const uint8_t pot_pin = A3;
-
 /*
 	Setup loop runs once.
 	Readies some components.
