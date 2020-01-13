@@ -4,6 +4,7 @@ uint8_t switch_blink = 1;
 const uint8_t x_joy_pin = A0;
 const uint8_t y_joy_pin = A1;
 const uint8_t brake_switch = 13;
+const uint8_t sw_pin = 10;
 
 // distance sensor pins
 const uint8_t trig_pin = 12;
@@ -35,6 +36,7 @@ void setup() {
 	pinMode(led_backup, OUTPUT);
 	pinMode(led_l, OUTPUT);
 	pinMode(led_brake, OUTPUT);
+	pinMode(sw_pin, INPUT);
 
 	pinMode(motor_pin, OUTPUT);
 
@@ -58,6 +60,15 @@ void loop() {
 	
 
 	analogWrite(motor_pin, map(analogRead(pot_pin), 0, 1023, 0, 255));
+	
+	Serial.print("sw_pin = ");
+  Serial.println(analogRead(sw_pin));
+  if(digitalRead(sw_pin) == 255){
+    tone(buzzer, 1000);
+  }
+  else{
+    noTone(buzzer);
+  }
 
 	if (y_axis > right_lim) {
 		// up
