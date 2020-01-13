@@ -1,4 +1,5 @@
 # All code files in this project should follow this format.
+# snake_case should also be used.
 ---
 # LLVM style defaults, but with 4 columns indentation.
 BasedOnStyle: LLVM
