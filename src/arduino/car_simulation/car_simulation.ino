@@ -48,17 +48,16 @@ void loop() {
 	uint8_t brake = digitalRead(brake_switch);
 
 	if (y_axis > right_lim) {
-		 // up
-    unsigned long distance = get_distance();
+		// up
+		unsigned long distance = get_distance();
 
-    if (distance < 15.0) {
-      // too close, begin braking
-      brake = 1;
-      Serial.print(0);
-    } else {
-      Serial.print(2);
-    }
-
+		if (distance < 15.0) {
+			// too close, begin braking
+			brake = 1;
+			Serial.print(0);
+		} else {
+			Serial.print(2);
+		}
 
 	} else if (y_axis < left_lim) {
 		// down (reversing)
@@ -116,7 +115,7 @@ void loop() {
 }
 
 /*
-    (Unused)
+	(Unused)
 */
 void print_val(String what, int val) {
 	Serial.print(what);
