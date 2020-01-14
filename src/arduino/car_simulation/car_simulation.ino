@@ -54,6 +54,8 @@ void setup() {
 	delay(2000); // uneeded.
 }
 
+// int backup_duration = 500;
+
 /*
   Loop runs infinitely.
   Reads and sends values over Serial.
@@ -71,11 +73,9 @@ void loop() {
 	Serial.print("pot = ");
 	Serial.println(pot_val);
 
-	if (digitalRead(sw_joy_pin)) {
-		tone(buzzer, 1047, 500);
-	} else {
-		noTone(buzzer);
-	}
+	if (!digitalRead(sw_joy_pin)) {
+		tone(buzzer_pin, 1047, 500);
+	} // there doesn't seem to be a need for noTone();
 
 	if (y_axis > right_lim) {
 		// up
@@ -102,6 +102,10 @@ void loop() {
 			digitalWrite(led_backup, LOW);
 		} else {
 			Serial.print(1);
+
+			if (switch_blink) {
+				tone(buzzer_pin, 1047, 500);
+			}
 			digitalWrite(led_backup, HIGH);
 		}
 	} else {
