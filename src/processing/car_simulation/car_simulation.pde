@@ -18,7 +18,8 @@ final int CAR_BOTTOM_H = 183;
 */
 void setup() {
   // new Serial object for reading input from arduino.
-	port = new Serial(this, Serial.list()[0], 9600);
+  int portNum = 0;  // change this to reflect the arduino Serial port.
+	port = new Serial(this, Serial.list()[portNum], 9600);
 	port.bufferUntil(10);
   
   // set up car pictures.
@@ -37,7 +38,10 @@ void setup() {
 	image(carBottomBlank, 0, CAR_BOTTOM_H);
 }
 
-boolean blink = false;  // responisble for the blinking.
+// responisble for the blinking.
+// a non-blocking approach could have been taken, but
+// since there was little time, we stuck with this solution.
+boolean blink = false;  // 
 
 /*
   Infinite loop. 
