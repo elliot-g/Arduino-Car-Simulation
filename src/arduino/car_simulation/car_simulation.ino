@@ -1,4 +1,7 @@
-// used for blinking effect
+
+// responisble for the blinking.
+// a non-blocking approach could have been taken, but
+// since there was little time, we stuck with this solution.
 uint8_t switch_blink = 1;
 
 // joystick pins
